@@ -5,14 +5,17 @@ SOURCEFILE=firstline.c
 INSTALLDIR=/usr/bin
 INSTALLPATH=$(INSTALLDIR)/$(OUTPUTFILE)
 
-.PHONY: install uninstall
+.PHONY: clean install uninstall
 
 $(OUTPUTFILE): $(SOURCEFILE)
 	cc $(CFLAGS) $(SOURCEFILE) -o $(OUTPUTFILE)
+
+clean:
+	rm -f $(OUTPUTFILE)
 
 install: $(OUTPUTFILE)
 	sudo cp $(OUTPUTFILE) $(INSTALLPATH)
 
 uninstall:
-	sudo rm $(INSTALLPATH)
+	sudo rm -f $(INSTALLPATH)
 
